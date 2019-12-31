@@ -3,10 +3,10 @@ import ErrorBoundary, { FallbackProps } from 'react-error-boundary';
 import { getTodo, Todo } from '../index';
 
 const Todos: FC<{ id: number }> = ({ id }) => {
-  const [todos, setTodos] = useState<Todo>({});
+  const [todos, setTodos] = useState<Todo>();
 
   useEffect(() => {
-    getTodo(id).then(setTodos)
+    getTodo(id).then(setTodos);
   }, []);
 
   return <pre>{JSON.stringify(todos, null, 2)}</pre>;
@@ -33,6 +33,4 @@ const MyFallbackComponent: FC<FallbackProps> = ({ componentStack, error }) => (
   </div>
 );
 
-export default () => (
-  <Todos id={1} />
-);
+export default () => <Todos id={1} />;
